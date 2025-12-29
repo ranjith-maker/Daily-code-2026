@@ -1,0 +1,330 @@
+*{
+  margin: 0;
+ padding: 0;
+ box-sizing : border-box;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+html, body {
+ height : 100%;
+ width : 100%;
+background-color: black;
+color: white;
+}
+
+
+.main{
+background-image: url("assets/Bg.jpg");
+height: 70vh;
+position: relative;
+background-size:cover;
+background-position: center center;
+background-repeat: no-repeat;
+
+/* background-size: max(1200px,100vw ) ; */
+}
+
+.main .box{
+width: 100%;
+background: black;
+opacity: 0.50;
+position: absolute;
+top: 0; 
+height:70vh;
+
+}
+
+/* Inside the main div we put our image and also we put one div(box) not below not above but on the same,see html, 
+so now the box is overlapping the bgimage and box color is black we decreased the opacity, so the img looks blackish layer    */
+
+/* here we're using the nav bar insde the main div as a first child,before it was a box now nav as first child,
+ you can ask why nav as first CHILD we can put  a nav outside and above the main div, Netflix off web is showing their bgimg from the start 
+it means behind the nav as well, that's why. and the nav takes space inside teh bgimg in top as a first child, since it doesn't have bgcolr- 
+it goes white,thats why we used position and relative concept inside the 2nd box 
+now, read the code      */
+
+nav{
+display: flex;
+align-items:center;
+justify-content: space-between;
+max-width: 60vw;
+margin: auto;
+height: 100px;
+}
+
+
+
+nav img{
+width: 110px;
+position: relative;
+z-index: 1;
+
+}
+
+
+
+/* one box inside img and another box took whole width and height and made it to black so now whatever changes we make in the img box, it will be hidden as that box took whole space and made it to black we made opactiy0.34
+and now if one box has to come front from inside we use z-index 1, all box is 0, which higher it'll be shown first   */
+
+
+
+nav button{
+position: relative;
+z-index: 1;
+background-color: red;
+border: none;
+border-radius: 10px;
+color: white;
+padding: 10px 20px;
+font-weight: 700;
+
+}
+
+
+.btn {
+    padding: 10px 32px;
+    font-weight: 700;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.021);
+    border-radius: 4px;
+    border: 1px solid white;
+    cursor: pointer;
+
+}
+
+.hero{
+height: calc(100% - 100px);
+color:whitesmoke;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+gap: 25px;
+padding: 20px;
+
+}
+
+/* height: calc(100% - 100px); this 100px is nav bar since nav toook space of 100px we are subbing here */
+
+
+.hero >:nth-child(1) {
+  font-size: 48px;
+  font-weight: 900;
+  /* text-align: center; */
+}
+
+
+.hero > :nth-child(2) {
+  font-size: 24px;
+  font-weight: 300;
+  /* text-align: center; */
+}
+
+ 
+.hero > :nth-child(3) {
+  font-size: 24px;
+  font-weight: 300;
+  /* text-align: center; */
+}
+
+.separate{
+height: 5px;
+background-color: gray;
+
+}
+
+
+
+/* The > means direct child only Now: Only the first span is styled    Input stays normal ✅ */
+/* | Selector               | What it targets                    |
+| ---------------------- | ---------------------------------- |
+| `.hero :first-child`   | First child **anywhere inside**    |
+| `.hero > :first-child` | First **direct** child             |
+| `span:first-child`     | Span if it’s first child of parent |
+| `:first-of-type`       | First of that tag type             |
+ | Selector          | Meaning               |
+| ----------------- | --------------------- |
+| `A B`             | any descendant        |
+| `A > B`           | direct child          |
+| `:first-child`    | 1st child (all types) |
+| `:last-child`     | last child            |
+| `:nth-child(n)`   | nth child             |
+| `:first-of-type`  | first tag             |
+| `:nth-of-type(n)` | nth tag               |
+| `:not()`          | exclude               |
+*/
+
+
+.hero-but{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+
+}
+
+
+
+.hero button {
+background-color: red;
+border: none;
+border-radius: 5px;
+color: white;
+padding: 10px 20px;
+font-size: large;
+font-weight: 700;
+}
+
+
+.email{
+width: 400px;
+height: 40px;
+font-size: large;
+padding: 10px;
+border: 1px solid white;
+border-radius: 5px;
+background-color: rgba(3, 1, 1, 0.103)
+
+}
+
+
+.first {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 70vw;
+    margin: auto;
+
+   
+}
+
+/* When you use max-width: 70vw; you should always put margin: auto; to center any element */
+
+
+section.first>div {
+    display: flex;
+    flex-direction: column;
+    padding: 34px 0;
+     gap: 10px;    
+} 
+
+/*     */
+
+.secImg img {
+    width: 555px;
+    /* position: relative; */
+    z-index: 1;
+}
+
+.secImg video {
+    position: absolute;
+    /* top: 51px;  
+     right: 0;  */
+     width: 555px;
+}
+
+
+section.first>div :nth-child(1) {
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+
+section.first>div :nth-child(2) {
+    font-size: 24px;
+
+}
+
+
+footer {
+    color: white;
+    max-width: 60vw;
+    margin: auto;
+    padding: 60px;
+}
+
+footer .questions {
+    padding: 34px 0;
+}
+
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+ 
+}
+
+.footer-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* this is when we've used both the grid and flexbox and gave a good space to row and column */
+
+
+@media screen and (max-width: 1300px) {
+
+    nav{
+        max-width: 90vw;
+    }
+
+    .first {
+        flex-wrap: wrap;
+    }
+
+    .secImg img {
+        width: 305px;
+    }
+
+    .secImg video {
+        width: 305px;
+    }
+
+    .hero> :nth-child(1) {
+        font-size: 32px;
+    }
+
+        .hero> :nth-child(2) {
+            font-size: 20px;
+        } 
+
+     .hero> :nth-child(3) {
+        font-size: 20px;
+    }
+
+    .hero-but {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    footer {
+        max-width: 90vw;
+        padding: 75px 0;
+    }
+
+    .footer-item{
+        align-items: center;
+    }
+ 
+
+}
+
+
+
+
