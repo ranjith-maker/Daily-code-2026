@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: antiquewhite;
+}
+
+.contain {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.orbit {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  /* background-color: green; */
+  text-align: center;
+  position: relative;
+
+
+}
+
+.sun{
+  height: 180px;
+  width: 180px;
+  background-color: yellow;
+  border-radius: 50%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.mars{
+  height: 140px;
+  width: 140px;
+  background-color: red;
+   border-radius: 50%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  animation-name: mari;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: linear;
+
+
+}
+
+
+.earth{
+  height: 120px;
+  width: 120px;
+  background-color: blue;
+   border-radius: 50%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  animation-name: eri;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: linear;
+
+}
+
+
+.jupiter{
+  height: 100px;
+  width: 100px;
+  background-color: royalblue;
+  border-radius: 50%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  animation-name: jup;
+  animation-timing-function: linear;
+  animation-duration: 8s;
+  animation-iteration-count: 1;
+  /* animation-iteration-count: infinite; */
+}
+
+
+
+
+
+@keyframes mari {
+
+  from{
+    transform:rotate(0deg) translate(250px) rotate(0deg)    ;
+  }
+
+to{
+      transform:rotate(360deg) translate(250px) rotate(0deg) ;
+}
+
+}
+
+
+
+@keyframes eri {
+from{
+  transform: rotate(0deg) translate(350px) rotate(0deg) ;
+}
+
+
+to{
+  transform: rotate(360deg) translate(350px) rotate(0deg);
+}
+}
+
+
+
+@keyframes jup{
+
+from{
+  transform: rotate(0deg) translate(450px) rotate(0deg)  ;
+}
+
+to{
+  transform: rotate(360deg) translate(450px) rotate(0deg)   ;
+}
+
+}
+
+
+
+
+
+
+
+
