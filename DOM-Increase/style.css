@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+ padding: 0;
+ box-sizing : border-box;
+ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif 
+}
+html, body {
+ height : 100%;
+ width : 100%;
+ background-color : black; 
+ color:aliceblue;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ gap: 10px;
+} 
+
+
+button{
+  background-color: burlywood;
+  border-radius: 5px;
+  padding: 10px 10px ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
