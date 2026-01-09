@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+
+</head>
+<body>
+    
+<div id="card">
+<img src="https://media.istockphoto.com/id/1324665776/photo/photo-of-magnificent-woman-20s-with-long-brown-hair-wearing-summer-clothing-smiling-to-you.webp?a=1&s=612x612&w=0&k=20&c=mhcXgpypwYHIMGYCFPiw4Z26ZrJEtWq2PeMoKyc94xM=" alt="">
+<h1>Angel Grace</h1>
+<h2  id="st"> Stranger</h2>
+
+<div class="btn">
+
+<button id="fol">Follow me</button>
+</div>
+
+</div>
+
+    <script src="./first.js"></script>
+</body>
+</html>
+
+    
+
+<!-- flex-direction only affects a flex container’s direct children, not grandchildren.
+
+So:
+
+#card { flex-direction: column; }
+→ affects only the direct children of #card
+
+.btns { display: flex; }
+→ affects only the buttons inside .btns
+These two flexboxes are independent.
+
+All display layout properties affect the child only 
+Amazing insight, we know that buttons'll come inside card,not oly that but img, h1s, button, all the elements we add 
+we made  for card as we want elements to come one by one, interesting thisng is we'ev 2 buttons and we want both the buttons to come side by side, flex-direction: column;
+it isn't possible, that's when we got to know this, flex-direction: column; only affects the direct child not the grandchild thts why we made a grandchild by putting a buttons in a div    
+now ok!
+
+
+Specificity comparison
+
+#card button → 1 ID + 1 element
+
+#remove → 1 ID
+
+👉 #card button is actually MORE specific than #remove
+
+Specificity values:
+
+#card button → (1,1,0)
+#remove       → (1,0,0)
+
+#card #remove → (2,0,0)  ✅ wins
+
+
+-->
+
+
+
+
