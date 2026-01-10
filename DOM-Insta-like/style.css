@@ -1,0 +1,97 @@
+*{
+  margin: 0;
+ padding: 0;
+ box-sizing : border-box;
+}
+html,body {
+ height : 100%;
+ width : 100%;
+ background-color : rgb(179, 121, 131);
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+#card{
+height: 400px;
+width: 250px;
+background-color: rgb(142, 106, 59);
+border-radius: 5px;
+position: relative;     
+
+}
+
+
+#card img{
+height: 100%;
+width: 100%;
+object-fit: cover;
+border-radius: 5px;
+
+}
+
+
+
+#card i {
+font-size: 40px;
+color: red;   
+position: absolute ;   
+/* top: 50%;
+left: 50%; */
+transform: translate(-50%, -50%) ; 
+transition: transform ease .5s;          
+ opacity: 0;
+}
+
+
+
+/* remix icon - if you want to increase the size you can use font-size:10px 
+If icon is inside the card div then the ico appears top-left as first thjing inside the card, see it without img,so you know
+
+| Situation                      | Result                      |
+| ------------------------------ | --------------------------- |
+| `absolute` + `relative parent` | inside the parent           |
+| No `top/left`                  | top-left corner             |
+
+#card {
+  position: relative;
+}
+
+#card i {
+  position: absolute;
+}
+
+The browser logic is:
+
+#card is positioned (relative).  The icon looks for the nearest positioned ancestor
+It finds #card = Since no top / left / right / bottom is given:
+
+The icon is placed at its static position Which effectively becomes top-left (0,0) of the card
+
+📍 NOT outside
+📍 NOT next to the card
+📍 NOT top-right
+
+Why it might look like it’s next to the card
+
+This illusion happens because:
+
+The image fills the card completely
+
+The icon appears over the image
+
+The image’s content makes it feel like the icon is floating beside it
+
+But technically:
+
+icon is INSIDE the card
+aligned to the card's top-left corner
+
+*/
+
+
+
+
+
+
