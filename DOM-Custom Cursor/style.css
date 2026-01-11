@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(184, 120, 120);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+.curs {
+  height: 40px;
+  width: 40px;
+  background-color: violet;
+  border-radius: 50%;
+  position: absolute;
+  mix-blend-mode: difference;
+  opacity: 0;
+  /* transition: all linear 0.2s; */
+}
+
+
+
+
+h1 {
+  font-size: 10vw;
+  font-weight: 800;
+  color: white;
+}
+
+
+
