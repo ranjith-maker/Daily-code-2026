@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  /* overflow: hidden;   */
+}
+
+nav{
+  height: 60px;
+  width: 100%;
+  background-color: bisque;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  /* border-radius: 15px; */
+  overflow: hidden;
+  gap: 10px;
+
+}
+
+.search-box input {
+  width: 250px;
+  height: 40px;
+  padding: 0 50px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+.search-box button {
+  height: 35px;
+  width: 100px;
+  padding: 0 15px;
+  border: none;
+  background-color: #ff4b2b;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container{
+    background-color: grey;
+    width: 100vw;
+    padding: 10px 10px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+
+
+
+}
+
+.card img {
+height: 350px;
+width: 300px;
+border-radius: 5px;
+object-fit: cover;
+object-position: bottom;
+
+}
+
+
+.card .caption{
+  text-align: center;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+ 
+.overlay{
+inset: 60px 0 0 0; 
+background-color: rgba(0,0,0,0.5);
+position: fixed;
+opacity: 0;
+visibility: hidden;
+transition: .5s;
+z-index: 5;
+pointer-events: auto;
+}
+
+
+.suggestions {
+  position: absolute; 
+  top: 60px;
+  width: 250px;
+  background: white;
+  color: black;
+  border-radius: 6px;
+  display: none;
+  z-index: 10;
+    padding: 10px;
+  cursor: pointer;
+
+}
+/* 
+.suggestions div {
+  padding: 10px;
+  cursor: pointer;
+} */
+
+/* .suggestions div:hover {
+  background: #eee;
+} */
+
+
