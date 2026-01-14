@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  color: aliceblue;
+  overflow: hidden;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position:  relative;
+
+
+}
+
+
+button {
+  width: 200px;
+  background: cadetblue;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 15px;
+    position:  relative;
+    z-index: 2;
+}
+
+button:active {
+  scale: 0.96;
+  background-color: aqua;
+}
+
+
