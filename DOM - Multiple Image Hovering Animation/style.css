@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+ position: relative;
+ color: white;
+ overflow: hidden;   
+}
+
+
+.box{
+ height: 150px;
+ width: 100%;
+ border-bottom: 2px solid white;
+ display: flex;
+align-items: center;
+justify-content: flex-start;
+position: relative;
+
+}
+
+.box h1{
+ font-size: 5vw;
+ position: relative;
+ z-index: 1;
+ /* mix-blend-mode: difference; */
+}
+
+
+.box img{
+height: 180px;
+width: 200px;
+object-fit: cover;
+border-radius: 50%;
+opacity: 0;
+position: absolute; 
+top: 2px;
+pointer-events: none;
+transform: translate(-50% ,-50%);
+ /* transition: opacity 0.2s ease, transform 0.1s linear; */
+}
+
+
+
+
+/* in box img we've given absolute so that img moves even though if you set x y in JS , position: absolute; what makes it movable  */
+
+
+
