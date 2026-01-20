@@ -1,0 +1,43 @@
+*{
+  margin: 0;
+ padding: 0;
+ box-sizing : border-box;
+ font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+html,
+body {
+ height : 100%;
+ width : 100%;
+background-color: gray;
+}
+
+
+
+.card {
+    background-color: bisque;
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 200px;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.buy-btn {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+#message {
+  margin:40px 20px;
+  font-weight: bold;
+  
+}
+
+
+#ans{
+    color: bisque;
+
+}
+
+
