@@ -54,7 +54,7 @@ quizData.forEach((val,idx)=>{
 
     let clutter = "";
 val.options.forEach((otp)=>{
-    clutter +=    ` <label>
+    clutter +=  ` <label>
         <input type="radio" name="q${idx}" value="${otp}"> ${otp}
        </label><br>`
 })    
