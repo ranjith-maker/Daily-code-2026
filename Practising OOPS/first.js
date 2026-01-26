@@ -210,6 +210,134 @@ obj.sayArrowFunc() ---> you get an window, why, Arrow Function takes it form the
 
 
 
+SECTION 4: Constructor Functions and Prototypes
+
+	10.	Create a User constructor function (do not use class syntax).
+
+function Anim (name) {
+this.name = name
+}
+let a1 = new Anim("Rabbit")
+console.log(a1);
+Anim { name: 'Rabbit' }
+ This is how constructor was made before Class function, ES6 Concepts
+
+	11.	Add a login method in two ways:
+First, inside the constructor
+Then, move the method to the prototype
+Writing a Prototype inside a constructor isn't a good practice we can just move it out of the constructor
+
+class Sign {
+    constructor (naam){
+this.name = naam;
+    }
+log(){
+    console.log("You are logged in");  
+}}
+
+
+let u1 = new Sign("okok") 
+console.log(u1);
+
+Sign { name: 'AM' }
+let u1 = new Sign() 
+u1.name
+u1.log()
+
+
+
+
+
+
+
+	12.	Create two User objects and compare their login methods using equality.
+Explain why the result is true or false.
+The purpose here is to understand how prototypes help share behavior efficiently.
+
+
+class Sign {
+    constructor (naam){
+this.name = naam;
+    }
+log(){
+    console.log("You are logged in");
+}}
+let u1 = new Sign("AM")
+let u2 = new Sign("PM") 
+
+console.log(u1.log === u2.log); ---> True
+It gave true as both are sharing the same prototype 
+
+SECTION 5: call, apply, bind
+
+call / apply / bind → normal functions
+new → class constructors
+NEVER mix them
+
+	13.	Create a function that prints this.name.
+function abc(){
+    console.log(this.name);  
+}
+let obj ={
+    name:"Rohith"
+}
+abc.call(obj)
+
+	14.	Create an object that contains a name property.
+
+Use call to run the function using the object
+Use apply to run the function using the object
+Use bind to create a new function and then call it
+let obj ={
+    name : "",
+}
+
+function abc(naam){
+    this.name =naam
+    console.log(this.name);
+}
+abc.call(obj,"okok")
+abc.apply(obj,["okok"])
+let func = abc.bind(obj,"okok")
+func()
+okok
+okok
+okok
+
+
+	15.	Borrow a method from one object and run it for another object using call.
+
+The goal is to understand how this can be manually controlled.
+
+    15. Borrow a method from one object and run it for another object using call.
+
+This is a version 1, when we complete it, we can understand the second 
+const uu ={
+name:"Rohith",
+greet: function name(city) {
+    console.log("Hello I am", this.name, city );   
+}
+}
+
+uu.greet.call(uu,"Bangalore") 
+ Hello I am Rohith Bangalore
+
+
+
+const user1 = {
+  name: "Rohith",
+  greet: function (city) {
+    console.log(`Hi, I am ${this.name} from ${city}`);
+  }
+};
+
+const user2 = {
+  name: "Mohith"
+};
+
+// borrow greet method from user1 and run it for user2
+user1.greet.call(user2, "Bangalore");
+
 
 
 
