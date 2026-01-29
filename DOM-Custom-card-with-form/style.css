@@ -1,0 +1,87 @@
+*{
+  margin: 0;
+ padding: 0;
+ box-sizing : border-box;
+ font-family:Helvetica;
+}
+html,
+body {
+ height : 100%;
+ width : 100%;
+ background-color : #222;
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.card{
+    width: 250px;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: grey;
+   
+
+}
+
+.card p{
+margin-top: 12px;
+    font-size: 12px;
+}
+.profile{
+height: 40px;
+width: 40px;
+object-fit: cover;
+border-radius: 50%;
+background-color: blue;
+margin-bottom: 1rem;
+overflow: hidden;
+}
+
+.profile img{
+height: 100%;
+width: 100%;
+object-fit: cover;
+
+
+}
+
+.card h3{
+    color: whitesmoke;
+    font-size: 1.5rem;
+}
+
+.card h4{
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+.card h5{
+    color: whitesmoke;
+    font-size: .8rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
