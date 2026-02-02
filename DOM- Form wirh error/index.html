@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+*{
+  margin: 0;
+ padding: 0;
+ box-sizing : border-box;
+}
+html,
+body {
+ height : 100%;
+ width : 100%;
+ background-color : rgb(96, 91, 91); 
+}
+
+body{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#form{
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    /* gap: 10px; */
+}
+
+form input{
+    margin:.5rem ;
+}
+
+button{
+    padding: 5px 15px;
+    border-radius: 5px;
+  border: none;
+  background-color: firebrick;
+  color: white;
+  cursor: pointer ;
+}
+
+small{
+    display: block;
+    visibility: hidden;
+    color: red;
+}
+
+</style>
+
+
+
+<body>
+
+    <div id="form" > 
+<form >
+
+<label>User name
+    <input type="text" id="name" placeholder="Username">
+    <small id="nameError"> Please use atleast 3 characters  </small>
+</label> 
+
+<label>Email
+    <input type="email" id="email" placeholder="Email">
+    <small  id="emailError" > Please write a valid email  </small>
+</label>   
+
+<label>Password
+    <input type="password" id="password" placeholder="Password">
+    <small  id="passError" >Password must contains 8 characters </small>
+</label> 
+
+
+<label>Mobile-no.
+    <input type="number" id="number" placeholder="Number" >
+    <small id="numError"  > Please enter a valid no.  </small>
+</label>  
+<button>Submit</button>
+</form>
+
+
+</div>
+
+
+<script>
+
+
+const form = document.querySelector("form")
+
+const nameInput = form.querySelector("#name")
+const email = form.querySelector("#email")
+const password = form.querySelector("#password")
+const number = form.querySelector("#number")
+
+const nameError = document.getElementById("nameError")
+const emailError = document.getElementById("emailError")
+const passError = document.getElementById("passError")
+const numError = document.getElementById("numError")
+
+
+form.addEventListener("submit", (ev)=>{
+
+    ev.preventDefault()
+let isValid = true;
+if(nameInput.value.trim().length < 3){
+    nameError.style.visibility = "visible"
+    isValid = false
+}else{
+    nameError.style.visibility = "hidden"
+}
+
+if(!email.value.includes("@")){
+    emailError.style.visibility = "visible"
+    isValid = false;
+} else{
+emailError.style.visibility = "hidden"
+}
+
+if(password.value.length < 8){
+    passError.style.visibility = "visible"
+isValid = false;
+}else{
+    passError.style.visibility = "hidden"
+}
+
+if(number.value.length < 10){
+    numError.style.visibility = "visible"
+    isValid = false;
+} else {
+    numError.style.visibility = "hidden"
+}
+
+
+
+if(isValid){
+    alert("Form submitted sucessfully")
+    form.reset()
+}
+
+
+
+})
+
+
+
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
