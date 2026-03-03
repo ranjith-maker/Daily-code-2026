@@ -6,6 +6,7 @@ const products = [
 { id:1, name:"Milk" , price: 599.88654 },
 { id:2, name:"Cookies" , price: 29.1979 },
 { id:3, name:"Snacks" , price: 300 },
+
 ];
 
 const productList = document.getElementById("product-list")
@@ -52,6 +53,8 @@ if (qtyMap[prodId]) {
 
   // Removing the products
   if (ev.target.classList.contains("minusBtn")) {
+// when they havent added but clicking minus so return , don't run    
+
     if (!qtyMap[prodId]) return; 
 
     qtyMap[prodId]--;
@@ -75,3 +78,13 @@ if (qtyMap[prodId]) {
   totalItems.textContent = `${itemCount} products selected`;
   price.textContent = `Total ${totalPrice.toFixed(2)}`;
 });
+
+
+
+
+
+
+
+
+
+
