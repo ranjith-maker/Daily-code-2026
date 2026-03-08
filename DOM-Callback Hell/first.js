@@ -56,14 +56,81 @@ placeOrder(()=>{
 })
 
 
-console.log("10")
 
-setTimeout(() => {
-    console.log("20");
+
+// console.log(10);
+
+// let timer = Date.now()
+
+// while(Date.now() - timer < 2000  ){
+
+// }
+
+// console.log(20);
+// console.log(30);
+// 10
+// 20
+// 30
+
+// console.log("hello coder army");
+
+// function meet( ) {
+//     const arr = [2,4,6]
+//     console.log(arr[0]);
     
-}, 2000);
+// }
 
-console.log("30")
+// function greet( ) {
+//     const a = 2 + 3;
+//     console.log(a);
+//     meet()
+//     console.log(a*a);
+    
+// }
+
+
+
+// greet()
+// console.log("Program End");
+
+
+// HCA
+// 5
+// 2
+// 25
+// PE
+
+
+//  console.log("hello coder army");
+
+
+//  setTimeout(() => {
+    
+// let a = 2+4;
+// console.log(a);
+
+//  }, 2000);
+
+// let b = 20
+// let arr = [20,30,11]
+
+
+// for(let i of arr){
+//     console.log(i*b);
+    
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
