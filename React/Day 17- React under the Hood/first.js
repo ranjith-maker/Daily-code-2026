@@ -86,7 +86,7 @@
 // Browser batches reflow/repaint if smart
 // (usually 1 reflow + 1 repaint, but can be more if layout is queried)
 // 💡 Key point: You are directly touching the DOM, so performance depends on browser optimizations and whether you force layout reads (offsetHeight, getComputedStyle, etc.).
-// ________________________________________
+
 // After React (using Virtual DOM)
 // State updates in React
 // ----------------------------------------
@@ -109,7 +109,7 @@
 // Example:
 // <h1 id="title">Hello</h1>
 // document.getElementById("title").textContent = "Hi!";
-// ✅ This immediately updates the Real DOM and triggers reflow/repaint.
+// This immediately updates the Real DOM and triggers reflow/repaint.
 // ________________________________________
 // 🔹 What is the Virtual DOM?
 // •	The Virtual DOM is an in-memory copy of the Real DOM, represented as a JavaScript object.
