@@ -136,10 +136,6 @@ main()
 
 
 
-
-//    "emailId": "salsil@gmail.com",
-//    "password": "sallysillY@%@$0)",
-
 /*
 
 now first user enters email & password , the req went to DB , it was same, so it server returned the home page of his a/c. 
