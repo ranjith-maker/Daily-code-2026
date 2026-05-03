@@ -81,6 +81,43 @@ if I dont use this middleware concept then  I need to use in all fucntion
 when you are using middleware , the next function ROUTE "/user"  this has to be same so that it works
 middleware is not security, it helps us not to repeat our code in all function
 
+
+
+
+
+New collection
+Click plus symbol and it will show add request
+So that you can start requesting
+app.use( "/user" , (req,res)=>{
+})
+what if I keep it just like this, I didnt send any response, when I go to postman and hit send
+it'll keep requesting for the response unless we cancel it
+here we wrote 2 callback function but only first one ran
+app.use( "/user" , (req,res)=>{
+console.log("first");
+res.send("Hello Coder army")
+console.log("first go");
+},
+(req,res)=>{
+console.log("second");
+res.send("Hello am second")
+})
+when we write res.send, it doesnt mean function returns and after below statement wont run
+here first also printed in console as well as first go
+but second didnt execute and get printed in the console as it was another callback
+OK, lets try to execute the second call back function as well
+app.use( "/user" , (req,res,next)=>{
+console.log("first");
+// res.send("Am first")
+next();
+},
+(req,res)=>{
+console.log("second");
+res.send("Am second");
+})
+for the second callback to run we need pass another parameter to the fucntion and call it at the end of first so that it'll run after the first function
+as we can send only one response we need to commentout the first res.send and as we call the next after printing the first the second callback ran by printing second in console as well as in postman Am second response was sent
+This is how you execute the third function but you need to pass the third param as next and call it in 1&2 so that it can go step by step to get execute
  */
 
 
