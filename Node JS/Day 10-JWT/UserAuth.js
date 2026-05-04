@@ -110,6 +110,14 @@ emailID : "lkskmf@com"
 
 
 
+// When the user sends a request to register, I first pass the entire request body into my validation function to ensure all required fields like firstName, emailId, and password are present and valid. Then I destructure only the required fields from the request body so I can explicitly control what data is being processed
+//  and stored. Before saving the user into the database,
+//  I hash the password using bcrypt so that the plain text password is never stored
+//  in MongoDB. After successfully creating the user, I generate a JWT token using the 
+// user’s id and email as payload, signed with a secret key and an expiration time,
+//  which ensures secure authentication and prevents tampering. This token is then 
+// sent back to the client inside a cookie so that the user remains authenticated in
+//  future requests without needing to log in again immediately. Finally, I send a success response to the client. If any error occurs during the process, it is caught and handled in the catch block.
 
 
 
