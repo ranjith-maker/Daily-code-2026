@@ -162,6 +162,90 @@ we'll learn an new ways to handle validation in upcoming class
 
 
 
+// Create problem, fetch it, update it , delete the problem 
+//for create update delete I need admin middlewareAuth , is it admin, then he can do first 3 tasks
+problemRouter.post("/create" , ProblemCreate )
+//in which problem I need to update and delete thats why :id
+
+problemRouter.patch("/:id", ProblemUpdate )
+ 
+problemRouter.delete("/:id", ProblemDelete ) 
+
+problemRouter.get("/", FetchAllProblem) 
+problemRouter.get("/:id", ProblemFetch )
+
+problemRouter.get("/user", SolvedProblems) 
+
+This reference solution is imp one , only with this we check whether the user has given a right answer or not, language for C++,JS,Java
+Complete solution is his answer 
+referenceSolution : [{
+
+ language :{
+    type : String,
+    required  : true
+}
+,
+completeSolution :{
+type : String,
+required : true
+
+}
+}],
+
+
+for (const { language, completeSolution} of referenceSolution){}
+we took language and answer from the refSol, also input and output like this
+{
+language : JS,
+code : "kkjshdfuishdwh",
+input : 625,
+output : 25
+}
+we give this to Judge0 and it has all compiler to run and say if the output is right or not 
+
+
+This is how we submit our code Judge0
+const submissions = visibleTestCases.map(( { input, output   }  ) =>({
+    
+    source_code : completeSolution,
+    language_id : languageID,
+    stdin : input,
+    expected_output : output
+    
+}) );
+Getlang comes from hrer
+
+const getlanguageID =  (lang)=>{
+
+const language = {
+
+     "c++" : 5,
+     "java" : 9,
+     "javascript" : 10,
+
+}
+
+return language[lang.toLowerCase()]
+
+}
+
+export default getlanguageID
+
+this function will give id the langauge that we need to send ,
+for (const { language, completeSolution} of referenceSolution){
+const languageID = getlanguageID(language)
+}
+am passing that language of the user input in this language as I iterate refSolu ,
+so when this getLan is called , I'm simply doing this passing the id only 
+
+
+we use Axios in this project
+Axios is a HTTP client library, it is for making HTTP request, but why do we use it over native fetch() 
+1)Axios is promise based which makes handling asynchronous requests easier with async/await. It automatically transforms JSON data, no need to response.json()
+2)With fetch you've to checkif the response is ok and throw an error yourself. Axio sdoes this automatically , it rejects the promise if the HTTP status is not in the 200 range. That's a bigplus for error handling  	
+
+To get the Judge0 Api key we need to go to 
+
 
 */
 
