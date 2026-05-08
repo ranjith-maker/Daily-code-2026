@@ -105,4 +105,92 @@
 // -----------------------
 
 
-
+// Compile time
+// It refers to the phase when the source code is translated into machine code or an immediate format eg- bytecode. This is done by a compiler.
+// In C++
+// Code is compiled first, turned into Machine Code --→ Gives it to CPU ,it is Run time
+// In Java
+// Code ---→ compile -→ Bytecode -→ CPU
+// Errors detected at this phase are called compile – time errors.
+// Examples of compile-time errors include:
+// Syntax errors (eg. Missing semicolons)
+// Type Mismatches (rg, assigning a string to a variable which declared as a number in typescript ).
+// Variable declarations without hesitation initialization (if required by the language)
+// JS is a Interpreter Language
+// It executes line by line
+// In JS, lets say there is a 10 lines of code, after the first lien itself it executes, it wont turn it as a Machine code, that’s why isn't giving you an error when you assign number variable to string
+// That’s why JS is slow compared to C++, in C++ all the code gets compiled at once and given to CPU
+// Here in JS one by one by one line given to CPU, 1000 lines, 1000 times to CPU, now in C++ 1000 lines of code, given once to CPU and gets executed
+// In JS, we could define the type while writing that’s why it wouldn't give us errors, where as in C++ we need write like a int = 10
+// Runtime
+// It refers to the phase when the program is executed after it has been compiled (or interpreted).
+// Errors detected during this phase are called runtime errors.
+// Examples of runtime errors include:
+// Dividing by zero.
+// Accessing undefined variables or null references.
+// Running out of memory.
+// Examples of Runtime Activities:
+// Executing code instructions.
+// Handling user inputs.
+// Interacting with APIs or databases
+// IN 2008, JS bring V8 engine, after that it boomed , it converted from interpreted from JIT, Just in Time language
+// V8 takes the JS code and converts it into machine code as JIT
+// And gives it to CPU
+// It looks a the code, get it one by one, and gives it to the cpu
+// C and C++ is Platform dependent language
+// Java JS is Platform independent language
+// What about TS, Typescript , is it compiler or interpreter language?
+// Am not running TS file anywhere, we 're just converting into JS and js runs it, People call it transpiler, we're converting it into one lang to another language, we aren’t converting into machine code or binary code .
+// Object
+// inline
+// let obj1: { name :string, age : number, gender:string } = {
+// name : "rohith",
+// age: 20,
+// gender : "female"
+// }
+// let person: {name : string, age:number, shirt: string }
+// person = {
+// name : "Rohith",
+// age : 25,
+// shirt : "Blue color"
+// }
+// //just like this, we defined waht type its gonna be and then declared the value to it
+// let n:number;
+// n=1
+// <!-- Using Type Alises -->
+// type customer = {
+// name :string,
+// age : number,
+// city :string
+// }
+// let c1 :customer = {
+// name : "Rohith",
+// age : 20,
+// city: "delhi",
+// }
+// //now in c1 what types we declared? customer type, waht is customer type, which has name age city , this way it looks clean
+// interface Admin{
+// name:string,
+// age : number,
+// city:string
+// }
+// interface Admin{
+// id:number
+// }
+// let customer:Admin = {
+// name : "Rohith",
+// age : 20,
+// city: "delhi",
+// id:450
+// }
+// What are all things we mentioned in the Admin and when we use that Admin interface, we need to use all of them like name age city id.
+// whenever we write lets use interface not type , why?as we can write interface once again as well like i did with id, and those interfaces get merged ,
+// 1. Declaration Merging, interfaces can be reopened and extended automatically.
+// Useful in: library typings, extending global objects, framework ecosystems
+// Use:
+// •
+// interface → for object structures/classes
+// •
+// type → for unions, mapped types, function compositions, advanced types
+// Interface is for Objects
+// Type is for primitive
