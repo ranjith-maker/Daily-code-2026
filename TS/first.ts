@@ -194,3 +194,115 @@
 // type → for unions, mapped types, function compositions, advanced types
 // Interface is for Objects
 // Type is for primitive
+
+
+
+
+
+
+
+// 3 TypeScript Lecture 3
+
+// Remember when we said, What are all things we mentioned in the Admin and when we use that Admin interface, we need to use all of them like name age city id.
+// What if the person we enter doesn't have Aadhar card ?
+
+// But we have in our interface like this
+// interface Person {
+// name : string,
+// age: number,
+// device : string
+// aadhar? : number
+
+// }
+
+// let obj:Person = {
+// name : "Oppo",
+// age : 55,
+// device: "Mobile"
+// }
+
+// We can just write aadhar in ? question mark and not mention in the object we make, it'll work alright, wont throw error
+
+// Interface with extend key word
+
+// interface Human{
+// name:string,
+// age:number
+// }
+
+// interface Professor extends Human{
+// salary:number,
+// id:number
+// }
+
+// interface BankEmployee extends Human{
+
+// position:string,
+// branch:string
+
+// }
+
+
+// let user:Professor = {
+ 
+// name:"Rohan",
+// age:20,
+// salary : 20000,
+// id:54
+ 
+// }
+// console.log(user);
+// { name: 'Rohan', age: 20, salary: 20000, id: 54 }
+
+// let users:BankEmployee = {
+
+// name:"Rohith",
+// age:22,
+// position : "Manager",
+// branch : "Dwaraka"
+
+// }
+
+// console.log(users);
+
+// { name: 'Rohith', age: 22, position: 'Manager', branch: 'Dwaraka' }
+
+// Here Professor and bankEmployee both share name and age, so instead of writing for each we made a single inderence as Human and used extend key word
+// With EXTEND we made it reusable 
+
+// Utility types of interface 
+// interface Customer {
+// name : string
+// branch : string
+// balance :number
+// }
+
+// let obj5 : Partial <Customer> = {
+// name : "Rohith",
+// branch : "Anna Nagar",
+// }
+
+// Partial means we don't need to write all things, all becomes optional
+//  won't throw error
+
+// let obj5 : Required <Customer> = {
+
+// name : "Rohith",
+// branch : "Anna Nagar",
+// balance : 100
+// }
+// Required means we need write all the columns
+
+// let obj5 : Readonly <Customer> = {
+// name : "Rohith",
+// branch : "Anna Nagar",
+// balance : 100
+// }
+// obj5.name = "sljlfn
+// Readonly means once we declared we cant change the values, if we try to change it throws an error
+
+
+
+
+
+
