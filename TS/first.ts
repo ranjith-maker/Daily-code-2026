@@ -301,6 +301,187 @@
 // obj5.name = "sljlfn
 // Readonly means once we declared we cant change the values, if we try to change it throws an error
 
+// We can write Array of Objects with interface as well
+// interface People{ name :string , age:number, city:string }
+
+// let arr:People[] = [
+// {name:"Rohan", age: 10 , city: "delhi"  },
+// {name : "Mohan" , age : 20 , city:"mumbai" } 
+// ]
+
+// Function in TS
+// function sum(a:number):number {
+// return a+5
+// }
+// console.log(sum(10));
+
+// what we return that type should also be defined after function bracket (a: type ):type
+// define the type of parameter and returning type as well one before bracket  :type) after ):type
+
+// function meet(name:string,  score:number  ):void {
+//     console.log(name,score);
+// }
+// meet("Anand",50);
+
+// if you don’t return anything you can use void as a return type 
+
+
+// function meet(names:string, marks:number):string{
+//    return `${names} scored ${marks} for 250 `
+// }
+// console.log(meet("Ram",200 )); //Ram scored 200 for 250 
+
+// Default Parameter
+// function good(names:string = "Raj"):string{
+// return `My name is ${names}`
+// }
+// console.log(good()); My name is Raj
+	
+// function good(names:string = "Raj"): string {
+// return `My name is ${names}`
+// }
+// console.log(good("Rio")); My name is Rio
+
+
+
+// Optional Parameter
+// function gate(name?:string) {    
+// console.log(name || "Mohith");
+// }
+// gate()
+// gate("Rohan")
+// Mohith
+// Rohan
+// gate()
+// Since name is optional we called empty function but we handled that as well inside fn, either name or Mohith so empty args gets Mohith
+
+
+// Arrow Function
+// const sum = (a:number , b:number):number=>{
+//     return a+b
+// }
+// console.log(sum(5,10));  15
+
+// Callback Function 
+
+// function place(amount:number, 
+// callback:(name:string)=>void):number {
+
+//     callback("Rohan")
+//     return amount + 10
+// }
+// console.log(
+// place(20, (name: string ) : void =>{
+//     console.log(name);
+    
+// }));
+
+// callback:(name:string)=>void , why here name:string is callback is a function, so we opened () i taccespts a args that is name that is strinkg so name:string , just amount:number
+//  cb returns nothing so void and place returns a number so :number
+//  (name: string ) : void =>{
+//     console.log(name);
+   
+ 
+// while calling the ans Function just we need to see normal JS this is how we write and here we used Type and since it returns anything so void that it
+
+
+// function youtube(channel:string , subscribers:( followers :number)=>void):string {
+
+// subscribers(50000)
+// return channel
+// }
+
+// let result =  youtube( "Mr.Beast", (followers : number ):void  =>{
+//     console.log(followers);
+// })
+// console.log(result);
+
+// 50000
+// Mr.Beast
+
+
+// followers ---> parameter
+// number ---> parameters type 
+// void , returns nothing
+
+// For callback the answer comes inside itself, for first param the ans comes in when we call
+// You can also make it look clean like custom interfaces for Object, you can use type for Callback 
+
+// type count  = (followers: number)=>void
+
+// function youtube(channel:string , subscribers: count ):string {
+
+// subscribers(50000)
+// return channel
+
+// }
+
+// let result =  youtube( "Mr.Beast", (followers : number ):void  =>{
+//     console.log(followers);
+// })
+
+// console.log(result);
+
+//  Rest Parameter
+
+// function sum(...arr:number[]) {
+
+//     return(
+// arr.reduce((acc,val)=> acc+ val ,0) )
+// }
+
+// let adds = sum(10,50,36,4)
+// console.log(adds); 100
+// ---------------------------------------
+// Class in JS 
+
+// class Person{
+
+// constructor(naam, aga, citi ){
+
+// this.naam  = naam;
+// this.aga = aga,
+// this.citi = citi
+
+// }}
+
+// let obj1 = new Person("Rohith" , 22, "Delhi")
+// let obj2 = new Person(12 , "Rohith", false)
+
+// console.log(obj1);
+// console.log(obj2);
+// Person { naam: 'Rohith', aga: 22, citi: 'Delhi' }
+// Person { naam: 12, aga: 'Rohith', citi: false }
+
+// This is the problem with JS, in obj1 is right, in obj2 I changed the values yet we gotta answers no warning, yes, obviously JS doesn't know and it wasn't designed to handle that.
+
+// Let's change this with TS
+// class Person {
+
+// name:string
+// age:number
+// city:string
+
+// constructor( name:string, age:number, city:string   ){
+
+//     this.name = name
+//     this.age = age
+//     this.city = city
+// }
+
+// meet():void{
+//     console.log( `My name is ${this.name} , and age is ${this.age}, am from ${this.city} ` );
+    
+// }}
+
+// let user1 = new Person("Rohan" , 25, "Delhi" )
+
+// console.log(user1);
+// user1.meet()
+
+// Person { name: 'Rohan', age: 25, city: 'Delhi' }
+// My name is Rohan , and age is 25, am from Delhi 
+
 
 
 
