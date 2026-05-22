@@ -484,6 +484,118 @@
 
 
 
+// Important Concept: Hot Code
+// “Hot code” means:
+// •	code executed many times
+// Example:
+// •	loops
+// •	frequently called functions
+// •	event handlers
+// Only hot code gets heavily optimized.
+
+// One More Interesting Thing: Deoptimization
+// If assumptions break, the engine may discard optimized code.
+// Example:
+// function add(a, b) {
+//     return a + b
+// }
+
+// add(10, 20)       // numbers
+// add("Hi", "JS")   // strings
+// The engine expected numbers.
+// Now behavior changed.
+// So it may deoptimize and recompile.
+
+// Short Definition
+// JIT compilation is the process where a JavaScript engine compiles code into optimized machine code during runtime to improve performance.
+
+// but JS wont compile the code like C++ right ? then why JIT compiles it ?
+// Correct — JavaScript is different from C++.
+// C++ is ahead-of-time compiled (AOT), while JavaScript is just-in-time compiled (JIT).
+// ________________________________________
+// C++ Compilation
+// In C++:
+// int a = 10;
+// int b = 20;
+// cout << a + b;
+// Before running:
+// 1.	Entire code is compiled
+// 2.	Machine code executable is generated
+// 3.	OS runs the executable
+// Flow:
+// C++ Code
+//    ↓
+// Compiler
+//    ↓
+// Executable File (.exe)
+//    ↓
+// Run
+// Compilation happens BEFORE execution.
+// JavaScript Works Differently
+// JavaScript was originally designed for browsers and needed:
+// •	fast startup
+// •	dynamic behavior
+// •	no manual compilation step
+// So JS engines execute code immediately.
+// Example:
+// console.log("Hello")
+// Browser runs it instantly.
+
+// Then Why Does JIT Compile?
+// Because pure interpretation is slow.
+// If the engine only interpreted:
+// Read line → Execute
+// Read line → Execute
+// every single time, performance would be poor.
+// So modern engines do this:
+// Start interpreting quickly
+//         ↓
+// Detect frequently used code
+//         ↓
+// Compile only that code to machine code
+//         ↓
+// Run optimized version
+// This gives:
+// •	fast startup
+// •	high performance
+// Best of both worlds.
+// Key Difference
+// C++	JavaScript
+// Fully compiled before running	Compiled during execution
+// Produces executable file	No separate executable
+// Static types	Dynamic types
+// Optimization before runtime	Optimization during runtime
+// ________________________________________
+// Why JS Cannot Fully Compile Like C++
+// Because JavaScript is highly dynamic.
+// Example:
+// let x = 10
+// x = "hello"
+// x = true
+// Type changes at runtime.
+// Even functions can change:
+// function greet() {
+//    console.log("Hi")
+// }
+
+// greet = 10
+// This flexibility makes traditional compilation harder.
+// So engines wait until runtime to understand actual behavior.
+// ________________________________________
+// Important Insight
+// JavaScript engines DO generate machine code internally.
+// You just don’t see:
+// •	.exe files
+// •	manual compile steps
+// The compilation happens automatically inside the engine while the program runs.
+
+
+
+
+
+
+
+
 
 
 
