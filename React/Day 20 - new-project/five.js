@@ -17,9 +17,49 @@
 
 
 
+/*----------------
+There 3 ways you can to validate/ submission of the form
+1) Full Fledged 3rd party libraries – React Hook ,Zod
+2) Controlled Components
+3)Uncontrolled Components
 
 
 
+CC
+It involves manual state management which can cause irrelevant re-renders, when using a CC you write an event handler for every way your data can change, like onchange 
+It also require you to maintain all the validation logic
+
+function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  function onSubmit() {
+    console.log("Name value: " + name);
+    console.log("Email value: " + email);
+  }
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"   name="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <input  type="email"  name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+Here we have two states: name and email. These states are assigned to the value property of the name and email input elements.
+The name state holds the value of the name input element. When a value is being typed in the name input, the onChange event attached to it sets the value of the input to the name state using the setName updater function.
+The email state holds the value of the email input element. The onChange event attached to the email input changes the email state via setEmail() to hold the value typed into the element.
+As you can see, the values of our input elements name and email are controlled by the React state; the state becomes the “single source of truth” for the input elements. Therefore, the App component shown above is a controlled component.
+
+*/
 
 
 
