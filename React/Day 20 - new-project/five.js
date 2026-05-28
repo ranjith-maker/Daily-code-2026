@@ -59,6 +59,38 @@ The name state holds the value of the name input element. When a value is being 
 The email state holds the value of the email input element. The onChange event attached to the email input changes the email state via setEmail() to hold the value typed into the element.
 As you can see, the values of our input elements name and email are controlled by the React state; the state becomes the “single source of truth” for the input elements. Therefore, the App component shown above is a controlled component.
 
+
+
+UCC
+It means it wont be handled by React, DOM directly controls it, like this
+In this example, we used DOM APIs directly. Now let’s refactor the code to do it in a React way:
+function App() {
+  const nameRef = useRef();
+  const emailRef = useRef();
+
+  function onSubmit() {
+    console.log("Name value: " + nameRef.current.value);
+    console.log("Email value: " + emailRef.current.value);
+  }
+  return (
+    <form onSubmit={onSubmit}>
+      <input type="text" name="name" ref={nameRef} required />
+      <input type="email" name="email" ref={emailRef} required />
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+We created two React refs, nameRef and emailRef, and assigned them to the ref attributes of name and email inputs, respectively. This will cause the refs to hold the HTMLElement instances of the elements in their .current property. From .current, we can reference the .value property to get the values of the input elements.
+
+Uncontrolled CC uses  ref to store their values, but React recommends that Controlled components to store form values
+Then what is the use case useref then ?
+5.Understanding React.forwardRef
+This form app became confusing as Sanket conveys so I'll so it later in some other youtube channel, So lemme move to the next projects
+
+
+
+
+
 */
 
 
