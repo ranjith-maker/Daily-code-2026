@@ -85,7 +85,7 @@ We created two React refs, nameRef and emailRef, and assigned them to the ref at
 Uncontrolled CC uses  ref to store their values, but React recommends that Controlled components to store form values
 Then what is the use case useref then ?
 5.Understanding React.forwardRef
-This form app became confusing as Sanket conveys so I'll so it later in some other youtube channel, So lemme move to the next projects
+This form app became confusing as Sanket conveys so I'll do it later in some other youtube channel, So lemme move to the next projects
 
 
 
