@@ -94,6 +94,172 @@ This form app became confusing as Sanket conveys so I'll do it later in some oth
 */
 
 
+/*
 
+Using Firebase as Backend
+
+import { useRef, useState } from "react"
+import Header from "./Header"
+import validateForm from "../utils/validate"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../Firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+
+
+export default function Login() {
+
+
+const [signIn , setSignIn ] = useState(true)
+const [showError , setShowError] = useState("")
+
+const nameRef = useRef(null)
+const emailRef = useRef(null)
+const passRef = useRef(null)
+
+
+const dispatch = useDispatch()
+const navigate = useNavigate()
+
+function handleSign() {
+    setSignIn(prev => !prev)
+}
+
+
+function handleFormData(ev) {
+    
+ev.preventDefault()
+const name = nameRef.current?.value
+const email = emailRef.current?.value
+const password = passRef.current?.value
+const message = validateForm(email,password)
+
+setShowError(message)
+
+//when it is invalid just return
+if(message) return
+
+//create a new user Sigining up
+if(!signIn){
+
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up it creates an user obj in firebase DB
+    const user = userCredential.user;
+    console.log(user);
+
+  })
+  updateProfile(auth.currentUser, {
+  displayName:  name  , photoURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTSaJI_GbtJB_R82YCUaz_-gqZDg4ukHMXkg&s"
+}).then(() => {
+  const {uuid, name, displayName , photoURL,}= auth.currentUser
+  dispatch(addUser({name:name , photoURL : photoURL}))
+    navigate("/browse")
+}).catch((error) => {
+setShowError(error.message)
+})
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setShowError(errorMessage)
+    // ..
+  });
+
+}else{
+//Login(Sign in) Logic only mail & password
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    navigate("/browse")
+    
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage);
+    setShowError("User not found",errorMessage)
+    
+  });
+
+}
+}
+
+
+
+    return(
+
+<>
+<Header/>
+
+
+<div
+className="relative  "
+> 
+
+<img src="https://assets.nflxext.com/ffe/siteui/vlv3/435e8bb8-7f1b-49cb-8da8-bff997124294/web/IN-en-20260511-TRIFECTA-perspective_ec39852e-0b48-4e8a-b415-dd8376cd83ce_large.jpg" alt=""
+      
+className="w-full h-screen object-cover brightness-50   "    
+/>
+
+
+    
+<form 
+className=" w-96 flex flex-col gap-5 absolute top-1/2 left-1/2 justify-center -translate-x-1/2 px-16 pt-8 pb-12 rounded -translate-y-1/2 bg-black/65 
+min-h-125
+"
+>
+<h1 className=" text-3xl font-bold  "> {signIn ? 'Login': 'Sign In'}   </h1>
+<>
+{ !signIn && (
+
+<input type="text" placeholder="Name" 
+ref={nameRef}
+className="p-2 border border-white rounded " />)
+}
+
+
+<input type="text" placeholder="Email or phone number " 
+ref={emailRef}
+
+className="p-2 border border-white rounded " /> 
+
+
+<input type="text"placeholder="Password"
+ref={passRef}
+
+className="p-2 border border-white rounded " />
+<p className=" text-red-600 "    > {showError} </p>
+
+</>
+
+
+<button
+onClick={handleFormData}
+className=" bg-red-700 w-full cursor-pointer text-white rounded-md py-2 ">
+{signIn ? 'Login In': 'Sign In'}  </button>
+
+
+<div className="flex justify-between text-sm ">
+  <span> {signIn ? 'New to Netflix ?' : 'Already Registered ?'} </span>
+
+  <span className="text-white cursor-pointer underline"
+  onClick={handleSign} >{  signIn  ? 'Sign up now' :  'Login now '} </span>
+
+</div>
+
+</form>
+</div>
+
+
+</>
+
+) }
+
+
+*/
 
 
