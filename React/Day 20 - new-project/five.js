@@ -260,6 +260,125 @@ className=" bg-red-700 w-full cursor-pointer text-white rounded-md py-2 ">
 ) }
 
 
+you mean that since header is present in all pages, header mounts after login and when i click some movie it agian mounts my header for that movie page notnyou are telling me it mounts again but first time itself is user still alive
+Exactly — and this is where we need to distinguish between React component life and Firebase user life.
+You're thinking:
+"If user is already alive after login, why would I need unsubscribe?"
+The answer is:
+The user object can stay alive, but the Header component can still mount/unmount multiple times.
+________________________________________
+Case 1: Header is truly global
+Suppose your App is:
+<App>
+  <Header />
+  <Routes />
+</App>
+Then:
+App starts
+  ↓
+Header mounts ONCE
+  ↓
+Header stays alive forever
+When you go:
+/ → /browse → /movie/123 → /movie/456
+Header never unmounts.
+In this case, unsubscribe is mostly just good practice.
+________________________________________
+Case 2: Header is inside each page
+Like:
+function Login() {
+  return (
+    <>
+      <Header />
+      ...
+    </>
+  );
+}
+and
+function Browse() {
+  return (
+    <>
+      <Header />
+      ...
+    </>
+  );
+}
+Then:
+Login page
+  ↓
+Header mounts
+Navigate to Browse:
+Login page unmounts
+Header unmounts
+Then:
+Browse page mounts
+Header mounts AGAIN
+Now the listener is registered again.
+This is where cleanup becomes important.
+________________________________________
+The important thing
+The Firebase user is NOT the listener.
+Think:
+Firebase User = Rahul
+Listener = Security Camera
+User:
+Rahul stays logged in
+can remain alive for hours.
+But the listener:
+Camera installed
+Camera removed
+Camera installed again
+depends on the component.
+So even though:
+user still exists
+the component may:
+mount
+unmount
+mount
+unmount
+many times.
+________________________________________
+Why unsubscribe then?
+Because when Header disappears:
+Header unmounts
+you want:
+Listener removed too
+Otherwise Firebase still has a callback pointing to a component that no longer exists.
+________________________________________
+Check your app
+Look at where Header is rendered.
+If it's like:
+<Login>
+  <Header />
+</Login>
+
+<Browse>
+  <Header />
+</Browse>
+then Header mounts/unmounts as routes change.
+unsubscribe();
+This does NOT call Firebase again.
+This does NOT trigger the callback again.
+It simply tells Firebase:
+"Stop notifying this listener."
+
+Themovie DB
+Email is college
+Password is 0000
+
+UI and UB
+UI & User Behaviour is made in head before coding
+const data =  await response?.json()
+const trailer = data?.results[25]
+console.log(trailer );
+
+when you wanna show something which you save inside redux then you need to use useSelector
+go to store store. Store name. then variable	
+
+const trailerKey = useSelector(store=>store.movie.trailer  )
+
+
+
 */
 
 
