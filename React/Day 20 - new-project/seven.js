@@ -96,6 +96,32 @@ className="subBtn"
 }
 
 
+
+
+
+export const validate = (values)=>{
+
+const errors = {};
+if(!values.username.trim()){
+    errors.username = "Username is required "
+}else if( values.username.length < 2){
+     errors.username = "Username should be more than 2 "
+}
+if(!values.email.trim()){
+    errors.email = "email is required "
+}else if( values.email.length < 2){
+     errors.email = "email should be more than 2 "
+}
+if(!values.password.trim()){
+    errors.password = "password is required "
+}else if( values.password.length < 5 ||values.password.length > 10)  {
+     errors.password = "password should be more than 5 within 10 "
+}
+return errors
+
+}
+
+
 */
 
 
