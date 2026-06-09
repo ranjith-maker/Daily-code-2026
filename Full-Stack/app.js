@@ -40,6 +40,97 @@ if(isAuthenticated  && user.role !== 'admin' && location.pathname.includes('/adm
 }
 
 if the admin is trying to access shop page he goes to admin's dashboard page, only user has access to shop page
+-----------------
+Creating Store
+
+
+const authSlice = createSlice({
+
+name : 'auth',
+initialState,
+
+
+reducers : {
+setUser:(state, action)=>{}
+}, 
+extraReducers:(builder)=>{
+    builder
+    .addCase(registerUser.pending, (state)=>{
+        state.isLoading = true
+    } ).addCase(registerUser.fulfilled,  (state,action)=>{
+        state.isLoading = false
+        state.isAuthenticated =false
+
+        state.toast = {
+            open: true,
+            message: action.payload?.message || "Registered successful",
+            type: 'success',
+      }
+        
+
+    } ).addCase(registerUser.rejected,  (state,action)=>{
+        state.isLoading = false
+        state.isAuthenticated = false
+
+        state.toast = {
+            open: true,
+            message: action.payload?.message || "User already existed",
+            type: 'error',
+      }
+
+
+})
+    .addCase(loginUser.pending, (state)=>{
+        state.isLoading = true
+    } ).addCase(loginUser.fulfilled,  (state,action)=>{
+        state.isLoading = false
+        state.isAuthenticated = true
+        state.user = action.payload?.user
+
+        state.toast = {
+            open : true,
+            message : action.payload?.message || 'User Logged in Successfully',
+            type: 'success'
+        }
+
+
+    } ).addCase(loginUser.rejected,  (state,action)=>{
+        state.isLoading = false
+        state.isAuthenticated = false
+        state.user = null
+
+        state.toast = {
+            open : true,
+            message : action.payload?.message || 'Incorrect EmailID or Password',
+            type: 'error'
+        }
+
+})
+      .addCase(checkAuth.pending, (state) => {
+      state.isLoading = true;
+   
+})
+
+     .addCase(checkAuth.fulfilled, (state, action) => {
+     state.isLoading = false;
+     state.isAuthenticated = true;
+     state.user = action.payload?.user;
+})
+
+   .addCase(checkAuth.rejected, (state) => {
+    state.isLoading = false;
+    state.isAuthenticated = false;
+    state.user = null;
+});
+
+}
+
+})
+
+export default authSlice.reducer
+
+export const { setUser, } = authSlice.actions
+
 
 
 */
