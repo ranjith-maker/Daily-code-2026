@@ -132,6 +132,142 @@ export default authSlice.reducer
 export const { setUser, } = authSlice.actions
 
 
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { FileIcon, FilesIcon, UploadCloudIcon, XIcon } from 'lucide-react'
+import React, { useEffect, useRef } from 'react'
+import axios from 'axios'
+
+
+
+export default function ProductImageUplaod(
+    {imageFile, setImageFile,
+     setUploadingUrl ,uploadingUrl,
+     setImageLoading,imageLoading
+}
+){
+
+    const inputRef = useRef(null)
+
+
+function handleImgfile(ev) {
+
+const seletedfile = ev.target.files?.[0]
+if(seletedfile){
+    setImageFile(seletedfile)
+}
+    
+}
+
+function handleDragOver(ev) {
+ev.preventDefault()
+
+}
+
+function handleDrop(ev) {
+ev.preventDefault()
+    const droppedFile = ev.dataTransfer.files?.[0]
+    if(droppedFile) setImageFile(droppedFile)
+
+}
+
+function handleRemoveImage() {
+    
+setImageFile(null)
+if(inputRef.current){
+    inputRef.current.value =""
+}}
+
+async function uploadImagetoCloudinary() {
+    setImageLoading(true)
+    
+const data = new FormData()
+data.append('my_file', imageFile )
+const response = await axios.post(
+    'http://localhost:5000/api/admin/products/upload-image', data  )
+
+    //am saying, in response when you get success true get me the url
+if(response?.data?.success){
+    setUploadingUrl(response.data?.result?.url)
+    setImageLoading(false)
+}
+
+
+
+}
+
+
+useEffect(()=>{
+
+if(imageFile !== null) uploadImagetoCloudinary()    
+
+}, [imageFile] )
+
+
+
+return (
+
+        
+    <div className='w-full  max-w-md mx-auto ' >
+        <Label  className='text-lg font-semibold block ' >Upload Image</Label>
+        <div  onDragOver={handleDragOver} onDrop={handleDrop}
+        
+        
+        className='border-2 border-dashed rounded-lg my-4 p-2' >
+            <Input type='file' id='image-upload' 
+            className=' hidden mb-4 '
+            ref={inputRef}
+            onChange={handleImgfile}
+            
+            />
+        {
+            !imageFile ? 
+            (<Label htmlFor='image-upload' className='h-32 flex flex-col justify-center items-center cursor-pointer ' >
+                <UploadCloudIcon 
+                className='w-10 h-10 text-muted-foreground mb-2' />
+                <span> Drag & Drop or Click to upload an Image </span>
+
+            </Label>) : (
+                imageLoading ? 
+                <div className='h-10 bg-gray-400' /> :
+                <div  className='items-center flex justify-between  ' >
+                   <div className=' flex items-center  ' >
+                    <FileIcon className='w-8 h-8 text-primary mr-2 ' />
+                   </div>
+                   <p  className='text-sm font-medium  ' > {imageFile.name}  </p>
+                   <Button variant='ghost' size='icon' className='text-muted-forefround hover:text-foreground' 
+                   onClick={handleRemoveImage}
+                   
+                   >
+                    <XIcon  className='w-4 h-4' />
+                    <span className='sr-only' >Remove File </span>
+                   </Button>
+
+
+
+                </div> 
+                    )
+        }
+        
+        </div>
+
+    </div>
+  )
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 */
 
