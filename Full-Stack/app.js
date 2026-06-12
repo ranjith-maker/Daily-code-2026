@@ -259,6 +259,70 @@ return (
 
 
 
+import React, { use, useState } from 'react'
+
+export default function Twitterlist({
+    tweet, isEdit, 
+    editText ,setEdittext,
+    onEdit, onSave , onDelete}) {
+
+
+return (
+
+<>
+<div className=' h-20 w-full flex justify-between gap-4 bg-zinc-400
+ text-black  rounded-xl p-5 ' >  
+
+{isEdit  ?(
+
+<input type="text" 
+onChange={(ev)=>setEdittext(ev.target.value)}
+value={editText}
+className=' w-2xl outline-2  '
+
+/>
+
+
+) : <span> {tweet?.text}  </span>
+
+}
+
+
+<div className='flex gap-5  text-white  ' > 
+
+    {isEdit ? 
+        <button  
+    onClick={onSave}
+     className=' bg-fuchsia-700 px-4 py-2 rounded-xl cursor-pointer'
+    > Save</button>
+    : 
+    <button  
+    onClick={onEdit}
+     className=' bg-fuchsia-700 px-4 py-2 rounded-xl cursor-pointer'
+    > Edit</button>
+
+    }
+
+    <button
+    onClick={onDelete}   
+
+     className=' bg-fuchsia-700 px-5 py-2 rounded-xl cursor-pointer'
+    >Delete </button>
+</div>
+
+
+
+</div>
+
+</>
+    )
+}
+
+
+
+
+
+
 
 
 
