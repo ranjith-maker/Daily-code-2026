@@ -322,20 +322,211 @@ className=' w-2xl outline-2  '
 
 
 
+//Accessing Form Values
+import React, { useState } from 'react'
+
+export default function Form() {
+
+const initialState ={
+
+firstname : '',
+lastname : '',
+email : '',
+country : '',
+streetaddress: '',
+number:'',
+
+comment: false,
+candidates : false,
+offer : false,
+checkit :false,
+
+notification : ''
+
+}
+
+const [formdata ,  setFormdata] = useState(initialState)
+
+
+function handleChange(ev) {
+    
+const { name, value , type, checked } = ev.target
+
+setFormdata((prev)=>{
+    return{
+        ...prev,
+        [name] : type === 'checkbox' ? checked : value
+    }
+})
+}
+
+
+function handleSubmit(ev) {
+    ev.preventDefault()
+    console.log(formdata);
+    
+}
 
 
 
 
+ return (
+<>
+
+<div className='min-h-screen w-full flex justify-center items-center flex-col '  >
+<h1> Form </h1>
+<div  className=' w-124 mt-6 border-2 rounded-xl flex flex-col p-5' >
+
+<form  onSubmit={handleSubmit }   >          
+<div  className=' flex flex-col  gap-4  '  >
+
+<label htmlFor="firstname">First name</label>   
+<input type="text"  placeholder='first Name'
+name='firstname'
+value={formdata.firstname}
+id='firstname'
+onChange={handleChange}
+
+className='border  '
+/>
+
+<label htmlFor="lastname">Last name</label>   
+<input type="text"  placeholder='last Name'
+name='lastname'
+id='lastname'
+value={formdata.lastname}
+onChange={handleChange}
+className='border  '
+
+/>
+
+<label htmlFor="email">Email</label>
+<input type="email"  placeholder='Email'
+name='email'
+value={formdata.email}
+onChange={handleChange}
+id='email'
+className='border  '
+/>
+<div  className='bg-zinc-300 text-black' >   
+     
+<select name="country" >
+
+<option value="" disabled > Country </option>
+<option value="India">India</option>
+<option value="US">US</option>
+<option value="UK">UK</option>
+<option value="France">France</option>
+
+</select>
+ </div>
 
 
+<label htmlFor="streetAddress">StreetAddress</label>
+
+<textarea name="streetaddress" id="streetAddress"
+value={formdata.streetaddress}
+onChange={handleChange}
+className='border  '
+
+></textarea>
+
+<label htmlFor="pincode">Pin code</label>
+<input type='number'
+value={formdata.number}
+onChange={handleChange}
+className='border  '
+name='number'
+id='pincode'
+/>
+
+{/* Checkbox is always a boolean value */
+/*
+<h1 className='font-bold' > By Email  </h1>
+
+<div className='flex gap-5' >   
+<label htmlFor="comment">Comments</label>
+
+<input type='checkbox' 
+id='comment'
+name='comment'
+value='comment'
+checked={formdata.comment}
+onChange={handleChange}
+/>
+
+<label htmlFor="candidates">Candidates</label>
+<input type='checkbox'
+name='candidates'
+id='candidates'
+value='candidates'
+checked={formdata.candidates}
+onChange={handleChange}
+/>
+
+<label htmlFor="offer">Offers</label>
+<input type='checkbox'
+name='offer'
+id='offer'
+value='offer'
+checked={formdata.offer}
+onChange={handleChange}
+/>
+</div>
+
+{/* Name has to be the same across all the radios */
+/*
+<h1 className='font-bold' > Push Notifications  </h1>
+<label htmlFor="everything">Everything</label>
+<input type='radio'
+id='everything'
+value='everything'
+name='notification'
+checked={formdata.notification === 'everything'}
+onChange={handleChange}
+/>
+
+<label htmlFor="same_as_email">Same as Email</label>
+<input type='radio'
+name='notification'
+id='same_as_email'
+value='same_as_email'
+checked={formdata.notification === 'same_as_email'}
+onChange={handleChange}
+/>
+
+<label htmlFor="no_push">NO push</label>
+<input type='radio'
+name='notification'
+id='no_push'
+value='no_push'
+checked={formdata.notification ===  'no_push' }
+onChange={handleChange}
+/>
+
+<label htmlFor="checkit">Checking checkbox</label>
+<input type='checkbox'
+name='checkit'
+value='checkit'
+checked={formdata.checkit}
+onChange={handleChange}
+/>
+
+<button>Submit</button>
+
+ </div>
+ </form>
+</div>
+</div>
 
 
+</>
 
+)
+}
 
 
 */
-
-
 
 
 
