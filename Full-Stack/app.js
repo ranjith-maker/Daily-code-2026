@@ -524,6 +524,34 @@ onChange={handleChange}
 
 )
 }
+React Router DOM
+in react router if we want the navbar links to show in all pages, we go to app.js and write the Link to= element = <Comp> 
+I am doing this as I dont wanna write hte nav bar in all components but can I do like separate Component for navBar and render it inside it all the compoenent I create or you tell me ehst is hte best practice industry sues ?
+
+is this best 
+import { BrowserRouter, Routes, Route } from "react-router-dom"; 
+<BrowserRouter> 
+<Routes> 
+<Route path="/" element={<Home />} /> 
+</Routes> 
+</BrowserRouter> 
+or this is best 
+import { createBrowserRouter } from "react-router-dom"; 
+import AppLayout from "./AppLayout"; 
+import Home from "./Home"; 
+export const appRouter = createBrowserRouter([ 
+{ 
+path: "/", 
+element: <AppLayout />, 
+children: [ 
+{ 
+index: true, 
+element: <Home />, 
+}, 
+], 
+}, 
+]);
+Both are valid in react-router-dom, but neither is universally “best” — they serve slightly different styles of routing.
 
 
 */
