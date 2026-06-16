@@ -554,6 +554,122 @@ element: <Home />,
 Both are valid in react-router-dom, but neither is universally “best” — they serve slightly different styles of routing.
 
 
+import React, { use } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { remove } from './cartSlice'
+
+
+
+export default function CartItem() {
+    
+const navigate = useNavigate()
+
+const {cartItems} = useSelector((state)=>state.cart )
+const {loading, products} = useSelector((state) => state.product)
+
+const dispatch = useDispatch()
+
+console.log(cartItems);
+
+
+return (
+<>
+<main  className='flex-1 ' >      
+
+{cartItems.length === 0 ?
+
+(<div  className=' flex-1  text-white flex justify-center items-center flex-col gap-5 '  >
+    <p>Your Cart is Empty</p>
+    <button 
+    onClick={()=>navigate('/') }
+    className='bg-green-400 px-4 py-2 rounded-md font-semibold cursor-pointer  ' > Shop Now </button>
+</div>) 
+
+:
+
+(
+
+<div className='grid grid-cols-2 justify-around border-2 p-5 gap-5 w-full'  > 
+
+<div id='cards' className='flex flex-col gap-15 ' >
+{
+cartItems.map((item)=>(
+
+     <div key={item.id} className='w-80 bg-zinc-500 p-3 rounded-lg'>
+
+    <img 
+      src={item.image}
+      className='w-40 h-40 object-contain'
+    />
+
+        <p> {item.description.slice(0,100)}... </p>
+
+        <div className='flex text-white justify-around  w-full  ' >
+            <p  className='font-bold  bg-green-500 px-2 py-1 rounded'>
+            $ {item.price}</p>
+        
+        <button 
+        
+        onClick={()=>  dispatch(remove(item.id)) }
+        className='bg-cyan-500 rounded px-3 py-1 font-bold cursor-pointer '
+        > Remove </button> 
+
+
+        </div>
+
+  </div>
+)
+)}
+
+
+</div>
+
+<div id='bill' className='bg-white p-3 flex flex-col gap-6 text-black' >
+
+<h1  className='text-center  font-bold' >Summary</h1> 
+{
+cartItems.map((item)=>(
+    <>       
+<div  key={item.id}  className='flex justify-between ' >
+    <h1   className='font-semibold ' > {item.title}</h1>
+    <h1  className='font-semibold ' > {item.price} </h1>
+</div>
+    </>
+))
+}
+
+<div  className='flex  justify-between border-2 border-amber-500 p-3 '  >   
+
+<h1  className='font-semibold '    > Total is $  </h1>
+
+<h1  className='font-semibold '          > $ 
+  {
+
+cartItems.reduce((total , item)=> total + item.price , 0 )
+
+}  
+     </h1>
+
+</div>
+</div>
+ </div>
+
+
+)
+
+
+}
+
+
+   </main>
+</>
+ 
+)
+}
+
+
+
 */
 
 
