@@ -51,9 +51,71 @@ main()
 
 
 
+/*
 
 
 
 
+so in future if I make any field required :true and this old user who changes his password now didn't enter that field as it was not required then 
+that's why we do vali:false
+
+validateBeforeSave: false
 
 
+
+Yes, that's exactly one of the main reasons.
+Imagine this timeline:
+Version 1  app
+Schema:
+contactNumber: {
+    type: String
+}
+Not required.
+User signs up:
+{
+  "name": "John",
+  "email": "john@gmail.com"
+}
+No contact number stored.
+
+Version 2 app
+Later you change schema:
+contactNumber: {
+    type: String,
+    required: true
+}
+New users must provide it.
+But old users in MongoDB still look like:
+{
+  "name": "John",
+  "email": "john@gmail.com"
+}
+No contact number.
+
+Now John resets password
+user.password = hashPass;
+
+await user.save();
+Mongoose validates the whole document:
+name 
+email 
+contactNumber 
+and throws:
+ValidationError:
+contactNumber is required
+Even though John wasn't trying to edit his contact number.
+________________________________________
+With validateBeforeSave: false
+await user.save({
+    validateBeforeSave: false
+});
+Mongoose says:
+Skip validation
+Save password changes only
+and John's password reset succeeds.
+
+
+"If in the future I make a new field required, old users may not have that field. Then password reset or other unrelated updates can fail because Mongoose re-validates the whole document. That's one reason to use validateBeforeSave: false."
+
+
+*/
