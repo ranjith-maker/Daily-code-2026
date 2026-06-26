@@ -118,4 +118,54 @@ and John's password reset succeeds.
 "If in the future I make a new field required, old users may not have that field. Then password reset or other unrelated updates can fail because Mongoose re-validates the whole document. That's one reason to use validateBeforeSave: false."
 
 
+Actor (User)
+from
+Actions/Events (Review, Progress, Enrollment)
+Most scalable MongoDB designs come from identifying those action documents.
+
+
+
+
+export const deleteProfile = catchAsync(async(req , res, next)=>{
+
+const user = req.user
+
+await Course.updateMany(
+{
+    studentsEnrolled : user._id,
+},
+{
+$pull : {
+    studentsEnrolled : user._id
+}}
+)
+
+await Course.updateMany({
+    mentor : user_id
+},
+{
+  $unset : {
+    mentor : ''
+
+}}
+)
+
+await CourseProgress.deleteMany({
+    userId : user._id
+})
+
+await user.save()
+
+res.clearCookie("token");
+
+return res.status(200).json({
+    success : true,
+    message : 'Account is deleted Successfully' 
+})
+
+})
+
+
+I use updateMany because courses are shared entities. The user is only referenced inside them, so I remove the reference using $pull. For CourseProgress and RatingAndReviews, those documents represent user-specific data. Once the user is deleted, those documents become orphan records, so I delete them using deleteMany."
+
 */
