@@ -670,6 +670,109 @@ cartItems.reduce((total , item)=> total + item.price , 0 )
 
 
 
+
+export const sendOTP = catchAsync(async (req, res, next) => {
+
+    const { email } = req.body;
+
+    if(!email){
+        throw new AppError("Email is required", 400);
+    }
+
+    const user = await User.findOne({ email });
+
+    if(user){
+        throw new AppError("User already exists", 400);
+    }
+
+    // we can gen otp from crpto which is nodejs inbuilt 
+    const otp = crypto.randomInt(100000, 1000000).toString();
+
+    // saving otp with email in DB
+    await OTP.create({ email, otp });
+
+    return res.status(200).json({
+        success: true,
+        message: "OTP sent successfully",
+        otp
+    });
+
+});
+
+/*
+ * first get from req body, check if it is valid
+ * check email already exist in db or not
+ * check password and confpassw is same or not
+ * get the recent otp 
+ * hash the pass
+ * save it in DB
+ 
+
+export const signUp = catchAsync(async(req,res,next)=>{
+
+const {firstName,lastName, email, password, confirmPassword,
+       role, otp, contactNumber } = req.body
+
+if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
+
+  throw new AppError('Invalid Entries', 502) 
+}
+
+if(password !== confirmPassword){
+    throw new AppError('Password and confirm password doesnt match, Please try again', 400)
+}
+
+if(!validator.isStrongPassword(password)){
+  throw new AppError('Password must contain 1Caps, 1Lows, 1no. ,1Symbol, total - 8 characters',400)
+}
+
+const ExistingUser = await User.findOne({email})
+
+if(ExistingUser){
+    throw new AppError('User already exist with the same Email', 400)
+}
+
+//find most recent otp 
+const recentOtp = await OTP.findOne({email}).sort({createdAt:-1 })
+
+console.log(recentOtp)
+
+//if it isn't 
+if(!recentOtp){
+    throw new AppError('OTP not found', 404)
+}
+
+//check user entered otp and sent otp in DB are same
+
+if(recentOtp.otp !== otp){
+    throw new AppError('OTP is not Valid', 400)
+}
+
+const hashPass = await bcrypt.hash(password, 10)
+
+const normalizedRole = role?.toLowerCase();
+
+if(!['student', 'mentor','admin'].includes(normalizedRole)){
+    throw new AppError('Invalid account type', 400)
+}
+
+const user = await User.create({
+     firstName, lastName,
+     email, password : hashPass,
+     role: normalizedRole,
+     image : `http://api.dicebear.com/5.x/initials/svg?seed=${firstName}`
+})
+
+return res.status(201).json({
+    success : true,
+    message : 'User created Successfully',
+    data : user
+})
+
+})
+
+
+
 */
 
 
