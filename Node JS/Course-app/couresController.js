@@ -105,7 +105,76 @@ return res.status(200).json({
 
 
 
+export const getCourseDetails = catchAsync(async(req,res,next)=>{
 
+
+const {courseId} = req.params
+
+if(!courseId){
+    return next(new AppError("CourseId is not Valid", 404));
+}
+
+
+const course = await Course.findById(courseId)
+.populate('mentor', 'firstName lastName')
+.populate('ratingAndReviews')
+.populate('studentsEnrolled')
+.populate('category')
+.populate({
+    path:'courseContent',
+    populate:{
+        path:'subSection'
+    }
+})
+
+
+if(!course){
+    return next(new AppError("Courses not found", 404));
+}
+
+
+return res.status(200).json({
+  success : true,
+  message : 'Got this one course',
+  data : course
+
+})
+})
+
+
+
+export const approveCourse = catchAsync(async(req,res,next)=>{
+
+const {courseId} = req.params;
+
+
+if(!courseId){
+        throw new AppError('Invalid Request', 400)   
+  }
+
+
+
+const course = await Course.findById(courseId);
+
+
+if(!course){
+    throw new AppError("Course not found",404);
+}
+
+
+course.status = "approved";
+
+
+await course.save();
+
+
+res.status(200).json({
+    success:true,
+    message:"Course approved by the Admin",
+    course
+});
+
+});
 
 
 
