@@ -37,7 +37,7 @@ const updatedCourse = await Course.findByIdAndUpdate(courseId,
 ).populate({path:  'courseContent', populate :{ path : 'subSection' } }  )
 
 if(!updatedCourse){
-    throw new AppError('COuld not update the course with this New Section')
+    throw new AppError('Could not update the course with this New Section')
 }
 
 
