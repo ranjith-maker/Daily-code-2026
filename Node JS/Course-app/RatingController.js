@@ -72,6 +72,71 @@ return res.status(201).json({
 
 
 
+//per course rr
+export const OwnCourseRating = catchAsync(async(req,res,next)=>{
+
+    const {courseId} = req.params
+
+    if(!courseId){
+        throw new AppError('Invalid Request', 400)
+    }
+
+const course = await Course.findById(courseId).populate(
+{
+    path : 'ratingAndReviews',
+    populate : {
+            path:"user",
+            select:"firstName lastName image"
+}})
+
+if(!course){
+        throw new AppError("Course not found",404);
+    }
+
+    const review = course.ratingAndReviews
+
+ return res.status(200).json({
+    success : true,
+    message:"Course ratings fetched successfully",
+    data:review
+
+ })   
+})
+
+
+//get all the reviews to show in homepage
+
+export const getAllRatingReviews = catchAsync(async(req,res,next)=>{
+
+const allReviews = await RatingAndReviews.find({})
+.sort({rating :'desc'})
+.populate({
+    path: 'user',
+    select : 'firstName image'  
+})
+.populate({
+    path: 'course',
+    select : 'courseName mentor'
+})
+.exec()
+
+return res.status(200).json({
+    success : true,
+    message : 'All the Reviews are fetched',
+    data : allReviews
+
+})
+
+})
+
+
+
+
+
+
+
+
+
 
 
 
