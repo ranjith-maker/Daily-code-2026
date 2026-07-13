@@ -133,7 +133,102 @@ return res.status(200).json({
 
 })
 
+export const exportTasksReport = catchAsync(async (req, res, next) => {
+    const tasks = await Task.find()
+        .populate({
+            path: "assignedTo",
+            select: "name email"
+        })
+        .lean();
 
+
+    const workbook = new ExcelJS.Workbook();
+
+    const worksheet = workbook.addWorksheet("Task Report");
+
+
+    worksheet.columns = [
+        {
+            header: "Task ID",
+            key: "_id",
+            width: 25
+        },
+        {
+            header: "Title",
+            key: "title",
+            width: 30
+        },
+        {
+            header: "Description",
+            key: "description",
+            width: 50
+        },
+        {
+            header: "Priority",
+            key: "priority",
+            width: 15
+        },
+        {
+            header: "Status",
+            key: "status",
+            width: 20
+        },
+        {
+            header: "Due Date",
+            key: "dueDate",
+            width: 20
+        },
+        {
+            header: "Assigned To",
+            key: "assignedTo",
+            width: 40
+        }
+    ];
+
+
+    // Add task rows
+    tasks.forEach((task) => {
+
+        const assignedUsers = task.assignedTo?.length
+            ? task.assignedTo
+                .map((user) => `${user.name} (${user.email})`)
+                .join(", ")
+            : "Unassigned";
+
+
+        worksheet.addRow({
+            _id: task._id.toString(),
+            title: task.title,
+            description: task.description || "No description",
+            priority: task.priority,
+            status: task.status,
+            dueDate: task.dueDate
+                ? new Date(task.dueDate).toLocaleDateString()
+                : "No due date",
+            assignedTo: assignedUsers
+        });
+
+    });
+
+
+    // Response headers
+    res.setHeader(
+        "Content-Type",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+
+
+    res.setHeader(
+        "Content-Disposition",
+        'attachment; filename="tasks_report.xlsx"'
+    );
+
+
+    // Send Excel file
+    await workbook.xlsx.write(res);
+
+    res.end();
+});
 
 
 /*
