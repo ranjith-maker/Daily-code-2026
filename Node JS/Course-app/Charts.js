@@ -66,3 +66,43 @@ return null
 
     )
 }
+import React from 'react'
+import {HiOutlineXMark} from 'react-icons/hi2'
+
+
+export default function Modal({children,title, isOpen,onClose,hideHeader}) {
+ 
+   if(!isOpen) return null
+
+    return (
+ <div className='fixed inset-0 z-50 flex justify-center items-center bg-black/40 w-full h-full    ' >
+    {/* Modal content */}
+         <div className={`relative flex flex-col rounded-lg bg-white  overflow-hidden `} >
+                 {/* Modal Header */}
+         {!hideHeader && (
+            <div className='  flex items-center justify-between p-4 border-b border-gray-200         ' >
+                <h3 className='md:text-lg font-medium text-gray-900 ' > {title} </h3>
+            </div>
+
+         ) }
+        <button 
+        onClick={onClose}
+        className=' flex justify-center items-center absolute  top-3.5 right-3.5 cursor-pointer text-gray-400 bg-transparent hover:bg-orange-100 hover:text-gray-900 rounded-lg text-sm w-8 h-9           '
+        type='button'
+        >
+          <HiOutlineXMark className="w-6 h-6    " />  
+
+        </button>
+        {/* Modal body scrollable */}
+         <div className='' >
+                  {children}         
+          </div>
+          
+         </div>
+ </div>
+        
+ 
+    )
+
+}
+
