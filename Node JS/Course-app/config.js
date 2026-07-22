@@ -169,11 +169,45 @@ const dispatch = useDispatch()
 
 const [searchInp, setSearchInp ] = useState('')
 
+
 // console.log(searchInp);
 
 //if the diff between 2 api call is less than 200ms then decline the api call 
 
+import React, { useState } from 'react'
 
+export default function Demo() {
+
+const [inp, setInp] = useState('')
+const [ dark, setDark ] = useState(false)
+
+
+
+  return (
+
+  
+    <div className={'mt-10 ml-10 w-110  flex flex-col px-2 h-110 border-2 ' 
+        + (dark ? 'bg-gray-950 text-white ' : 'bg-white text-black'  )
+
+
+     }>
+    
+        <h1 className='text-center' > DEMO </h1>
+        <button 
+        onClick={()=> setDark(!dark) }
+        className='bg-lime-400 px-3 py-1 rounded-lg  ' >
+            Theme
+        </button>
+      <input type="text"
+      value={inp}
+      className='border-2 border-white w-[80%] mt-2 rounded-lg  py-3  '
+      onChange={({target})=> setInp(target.value) }
+      />
+        
+    </div>
+ 
+)
+}
 async function getSuggestions() {
     
 const response = await fetch(YOUTUBE_SEARCH+searchInp)
